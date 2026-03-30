@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Search</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="https://www.youtube.com/@harsh2004singh" class="brand">
+    <div class="logo">🚀</div>
+    <div class="brand-text">
+        <span class="title">Elite Universe</span>
+        <span class="subtitle">Finance • Stocks • Growth</span>
+    </div>
+     </a>
+        <nav>
+            <a href="https://www.nseindia.com/">NIFTY 50</a>
+            <a href="https://www.google.com/finance/beta/quote/NIFTY_NEXT_50:INDEXNSE">NIFTY NEXT 50</a>
+            <a href="https://www.bseindia.com/">SENSEX</a>
+            <a href="https://www.google.com/finance/beta/quote/NIFTY_BANK:INDEXNSE">BANKNIFTY</a>
+            <a href="https://www.nseindia.com/market-data/all-upcoming-issues-ipo">IPO</a>
+        </nav>
+        <a href="open.html" class="invest-now">Invest Now</a>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+        <img 
+            class="hero-image" 
+            src="https://d3po6s2ufk88fh.cloudfront.net/450x300/Ticker/19556c0776e84fdb878cd54d266fc1a8.jpg" 
+            alt="Hero Image">
+        <h1>Investing Ka Search Engine</h1>
+
+        <h3 style="color: blue;">The Modern Stock Screener that helps you pick better stocks.</h3>
+        
+        <form id="stockSearchForm" onsubmit="handleSearch(event)">
+            <input 
+                id="input"
+                type="text" 
+                name="stock_symbol" 
+                placeholder="Enter stock symbol (e.g., TCS)" 
+                autocomplete="off"
+                required>
+            <br>
+            <button type="submit">Search</button>
+            <div class="result"></div>
+        </form>
+
+        <script>
+            function handleSearch(event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+                const stockInput = document.getElementById('input').value.trim().toUpperCase();
+                if (stockInput) {
+                    const url = `https://www.nseindia.com/get-quotes/equity?symbol=${stockInput}`;
+                    console.log(`Opening NSE for ${stockInput}...`);
+                    window.open(url, '_blank'); // Open URL in a new tab
+                    document.querySelector('.result').textContent = `Searching for ${stockInput}...`;
+                } else {
+                    document.querySelector('.result').textContent = 'Please enter a valid stock symbol.';
+                }
+            }
+        </script>
+    </main>
+</body>
+</html>
